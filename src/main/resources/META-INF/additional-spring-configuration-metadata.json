@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "spring.jpa.show-sql.properties.javax.persistence.schema-generation.create-source",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.show-sql.properties.javax.persistence.schema-generation.create-source."
+    }
+  ]
+}
