@@ -30,7 +30,7 @@ public class IngredientControllerTest {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
-    controller = new IngredientController(recipeService, ingredientService, unitOfMeasureService);
+    controller = new IngredientController(ingredientService, recipeService, unitOfMeasureService);
 
     mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
   }
