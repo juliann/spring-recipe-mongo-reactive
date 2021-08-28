@@ -6,12 +6,12 @@ import com.nadarzy.springrecipemongoapp.converters.RecipeToRecipeCommand;
 import com.nadarzy.springrecipemongoapp.model.Recipe;
 import com.nadarzy.springrecipemongoapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest
+@Disabled
 public class RecipeServiceIT {
 
   public static final String NEW_DESCRIPTION = "New Description";

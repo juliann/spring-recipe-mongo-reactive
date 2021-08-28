@@ -3,13 +3,13 @@ package com.nadarzy.springrecipemongoapp.repositories;
 import com.nadarzy.springrecipemongoapp.model.UnitOfMeasure;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Optional;
 
-@DataJpaTest
+@Disabled
 public class UnitOfMeasureRepositoryIT {
 
   @Autowired UnitOfMeasureRepository unitOfMeasureRepository;
