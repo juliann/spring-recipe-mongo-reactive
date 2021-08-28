@@ -6,12 +6,11 @@ import com.nadarzy.springrecipemongoapp.converters.RecipeToRecipeCommand;
 import com.nadarzy.springrecipemongoapp.model.Recipe;
 import com.nadarzy.springrecipemongoapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.boot.test.context.SpringBootTest;
 
-@Disabled
+@SpringBootTest
 public class RecipeServiceIT {
 
   public static final String NEW_DESCRIPTION = "New Description";
@@ -24,7 +23,6 @@ public class RecipeServiceIT {
 
   @Autowired RecipeToRecipeCommand recipeToRecipeCommand;
 
-  @Transactional
   @Test
   public void testSaveOfDescription() throws Exception {
     // given

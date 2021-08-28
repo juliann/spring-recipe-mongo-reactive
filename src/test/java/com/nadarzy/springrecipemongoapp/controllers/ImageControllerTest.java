@@ -5,7 +5,6 @@ import com.nadarzy.springrecipemongoapp.services.ImageService;
 import com.nadarzy.springrecipemongoapp.services.RecipeService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -104,13 +103,13 @@ public class ImageControllerTest {
     Assertions.assertEquals(s.getBytes().length, responseBytes.length);
   }
 
-  @Test
-  @Disabled
-  public void testGetImageNumberFormat() throws Exception {
-
-    mockMvc
-        .perform(get("/recipe/a/recipeimage"))
-        .andExpect(status().isBadRequest())
-        .andExpect(view().name("400error"));
-  }
+  //  @Test
+  //  @Disabled
+  //  public void testGetImageNumberFormat() throws Exception {
+  //
+  //    mockMvc
+  //        .perform(get("/recipe/a/recipeimage"))
+  //        .andExpect(status().isBadRequest())
+  //        .andExpect(view().name("400error"));
+  //  }
 }

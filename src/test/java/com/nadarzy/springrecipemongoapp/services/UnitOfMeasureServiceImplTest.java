@@ -6,7 +6,6 @@ import com.nadarzy.springrecipemongoapp.model.UnitOfMeasure;
 import com.nadarzy.springrecipemongoapp.repositories.UnitOfMeasureRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,8 +15,8 @@ import java.util.Set;
 
 import static org.mockito.Mockito.*;
 
-@Disabled
 public class UnitOfMeasureServiceImplTest {
+
   UnitOfMeasureToUnitOfMeasureCommand unitOfMeasureToUnitOfMeasureCommand =
       new UnitOfMeasureToUnitOfMeasureCommand();
   UnitOfMeasureService service;
