@@ -82,7 +82,7 @@ public class IngredientController {
     log.debug("saved ingredient id:" + savedCommand.getId());
 
     return "redirect:/recipe/"
-        + savedCommand.getRecipeId()
+        + command.getRecipeId()
         + "/ingredient/"
         + savedCommand.getId()
         + "/show";
