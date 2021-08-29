@@ -3,14 +3,16 @@ package com.nadarzy.springrecipemongoapp.services;
 import com.nadarzy.springrecipemongoapp.commands.UnitOfMeasureCommand;
 import com.nadarzy.springrecipemongoapp.converters.UnitOfMeasureToUnitOfMeasureCommand;
 import com.nadarzy.springrecipemongoapp.model.UnitOfMeasure;
-import com.nadarzy.springrecipemongoapp.repositories.UnitOfMeasureRepository;
+import com.nadarzy.springrecipemongoapp.repositories.reactive.UnitOfMeasureReactiveRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import reactor.core.publisher.Flux;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.mockito.Mockito.*;
@@ -21,7 +23,8 @@ public class UnitOfMeasureServiceImplTest {
       new UnitOfMeasureToUnitOfMeasureCommand();
   UnitOfMeasureService service;
 
-  @Mock UnitOfMeasureRepository unitOfMeasureRepository;
+  @Mock
+  UnitOfMeasureReactiveRepository unitOfMeasureRepository;
 
   @BeforeEach
   public void setUp() throws Exception {
@@ -43,10 +46,10 @@ public class UnitOfMeasureServiceImplTest {
     uom2.setId("2");
     unitOfMeasures.add(uom2);
 
-    when(unitOfMeasureRepository.findAll()).thenReturn(unitOfMeasures);
+    when(unitOfMeasureRepository.findAll()).thenReturn(Flux.just(uom1, uom2));
 
     // when
-    Set<UnitOfMeasureCommand> commands = service.listAllUoms();
+    List<UnitOfMeasureCommand> commands = service.listAllUoms().collectList().block();
 
     // then
     Assertions.assertEquals(2, commands.size());

@@ -1,9 +1,8 @@
 package com.nadarzy.springrecipemongoapp.services;
 
 import com.nadarzy.springrecipemongoapp.commands.UnitOfMeasureCommand;
-
-import java.util.Set;
+import reactor.core.publisher.Flux;
 
 public interface UnitOfMeasureService {
-  Set<UnitOfMeasureCommand> listAllUoms();
+  Flux<UnitOfMeasureCommand> listAllUoms();
 }
