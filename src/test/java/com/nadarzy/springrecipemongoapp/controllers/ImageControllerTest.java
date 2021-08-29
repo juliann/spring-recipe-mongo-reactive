@@ -12,6 +12,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import reactor.core.publisher.Mono;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -45,7 +46,7 @@ public class ImageControllerTest {
     RecipeCommand command = new RecipeCommand();
     command.setId("1");
 
-    when(recipeService.findCommandById(anyString())).thenReturn(command);
+    when(recipeService.findCommandById(anyString())).thenReturn(Mono.just(command));
 
     // when
     mockMvc
@@ -61,6 +62,8 @@ public class ImageControllerTest {
     MockMultipartFile multipartFile =
         new MockMultipartFile(
             "imagefile", "testing.txt", "text/plain", "Spring Framework Guru".getBytes());
+
+    when(imageService.saveImageFile(anyString(), any())).thenReturn(Mono.empty());
 
     mockMvc
         .perform(multipart("/recipe/1/image").file(multipartFile))
@@ -88,7 +91,7 @@ public class ImageControllerTest {
 
     command.setImage(bytesBoxed);
 
-    when(recipeService.findCommandById(anyString())).thenReturn(command);
+    when(recipeService.findCommandById(anyString())).thenReturn(Mono.just(command));
 
     // when
     MockHttpServletResponse response =

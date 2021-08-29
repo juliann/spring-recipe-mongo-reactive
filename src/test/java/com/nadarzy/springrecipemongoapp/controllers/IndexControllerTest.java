@@ -11,8 +11,10 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
+import reactor.core.publisher.Flux;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.mockito.Mockito.*;
@@ -37,6 +39,7 @@ public class IndexControllerTest {
   @Test
   public void testMockMVC() throws Exception {
     MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+    when(recipeService.getRecipes()).thenReturn(Flux.empty());
     mockMvc.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("index"));
   }
 
@@ -50,9 +53,9 @@ public class IndexControllerTest {
     e.setId("2");
     recipes.add(e);
 
-    when(recipeService.getRecipes()).thenReturn(recipes);
+    when(recipeService.getRecipes()).thenReturn(Flux.fromIterable(recipes));
 
-    ArgumentCaptor<Set<Recipe>> setArgumentCaptor = ArgumentCaptor.forClass(Set.class);
+    ArgumentCaptor<List<Recipe>> setArgumentCaptor = ArgumentCaptor.forClass(List.class);
 
     String viewName = indexController.getIndexPage(model);
 
@@ -60,7 +63,7 @@ public class IndexControllerTest {
     verify(recipeService, times(1)).getRecipes();
     verify(model, times(1)).addAttribute(eq("recipes"), setArgumentCaptor.capture());
 
-    Set<Recipe> setInController = setArgumentCaptor.getValue();
+    List<Recipe> setInController = setArgumentCaptor.getValue();
     Assertions.assertEquals(2, setInController.size());
   }
 }
